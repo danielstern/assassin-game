@@ -1,0 +1,139 @@
+body {
+
+  padding-top: 5em;
+		
+}
+
+ad {
+
+/*  display: none;*/
+margin-top: 30px;
+display: block;
+margin-left: 68px;
+
+}
+.ng-cloak {
+
+  display: none;
+
+}
+
+.timeFrame-mode-only {display: none !important;}
+.net-value-only{display: none !important;}
+.interest-mode-only {display: none !important;}
+
+.netValueMode-net-value-only {display:block !important;;}
+.netValueMode-net-value-hide {display:none !important;}
+
+.interestMode-interest-mode-only {display:block !important;;}
+.interestMode-interest-mode-hide {display:none !important;}
+
+.timeFrameMode-timeFrame-mode-only {display: block !important;}
+.timeFrameMode-timeFrame-mode-hide {display: none !important;}
+
+	
+	
+.tiny {
+
+  font-size: 9px;
+
+}
+
+.to-left {
+
+
+	text-align: left !important;
+
+}
+
+.pad-left {
+
+	padding-left: 15px;
+
+}
+
+spacey {
+
+	height: 16px;
+	width: 16px;
+	display: block;
+
+}
+
+
+.red-gradient {
+ 
+  background: #812b39; /* Old browsers */
+background: -moz-linear-gradient(top, #812b39 0%, #471824 100%) !important; /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#812b39), color-stop(100%,#471824)) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #812b39 0%,#471824 100%) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #812b39 0%,#471824 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #812b39 0%,#471824 100%); /* IE10+ */
+background: linear-gradient(to bottom, #812b39 0%,#471824 100%) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#812b39', endColorstr='#471824',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+.animate {
+	-moz-transition: all 0.4s;   
+	-webkit-transition: all 0.4s;  
+	transition: all 0.4s;  
+	}
+
+.netValueMode-color {
+
+	background-color: #f0eefb !important;
+	background-image: none !important;
+	
+}
+
+
+.interestMode-color {
+
+	background-color: #b4e6ca !important;
+	background-image: none !important;
+
+}
+
+.timeFrameMode-color {
+
+	background-color: #e6b4d1 !important;
+	background-image: none !important;
+ 
+}
+
+.chartHolder {
+
+  position: absolute;
+  top: 75px;
+  right: 40px;
+  min-width: 480px;
+
+
+}
+
+@media all and (max-width: 969px) {
+
+  .chartHolder {
+    
+		position: relative;	
+		right: 0px;
+		width: 75%;
+		min-width: 0px;
+  
+  }
+  
+  #chart {
+	min-width: 480px;
+  }
+}
+
+@media all and (max-width: 400px) {
+
+  
+  #chart {
+  
+	min-width: 320px;
+  }
+}
