@@ -6,10 +6,10 @@ angular
 	      templateUrl: 'routes/dashboard.html',
 	      controller: 'Dashboard'
 	    })
-		/*.when('/', {
+		.when('/', {
 		  templateUrl: 'routes/dashboard.html',
 		  controller: 'Dashboard'
-		})*/  
+		})  
       })
 	.controller('Dashboard', function Dashboard($scope, $http, $routeParams) {
 	
