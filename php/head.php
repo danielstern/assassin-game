@@ -1,7 +1,7 @@
 <!doctype HTML>
 <!-- Copyright 2013 danielstern.ca - feel free to examine, learn and apply -->
 
-<html ng-app> 
+<html ng-app='assassin'> 
 <head>
 	<title>Assassin - Beta</title>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0;">
