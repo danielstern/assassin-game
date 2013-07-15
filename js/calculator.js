@@ -10,8 +10,14 @@ angular
 		  templateUrl: 'routes/dashboard.html',
 		  controller: 'Dashboard'
 		})  
+		.when('/admin') {
+		  templateUrl: 'routes/adminMain.html',
+		  controller: 'AdminMain'			
+		}
       })
 	.controller('Dashboard', function Dashboard($scope, $http, $routeParams) {
+	
+		console.log('giddyup');
 	
 		$scope.name = $routeParams.id;
 	
@@ -36,5 +42,10 @@ angular
 		  })	  	  
 	  
 		}	
+	})
+	.controller('AdminMain', function AdminMain($scope, $http) {
+		
+		console.log('controllertime...');
+	
 	});
   
