@@ -3,24 +3,17 @@
   
   console.log('Assassin: Beta.')
   
-  $scope.name = "RenlysGhost";
   
-  var $name = $scope['name'];
-  var $email = $scope['email'];
   
-  $scope.register = function() {
-	  
+  $scope.register = function() {  	  	  var $name = $scope['username'];	  var $email = $scope['email'];
 	  $http({
 		method: 'GET', 
-		url: 'http://www.danielstern.ca/assassin/register.php',
+		url: 'register.php',
 		params: {name:$name,email:$email}
-		}).
-	  success(function(data, status, headers, config) {
-		// this callback will be called asynchronously
-		// when the response is available
-		console.log(data,status)
-	  })
-	console.log('hello...')
+	  }).
+	  success(function(data, status, headers, config) {		
+		console.log(data, data.errorCode);		console.log(headers(),config);		console.log(data.errorCode);				if (status != 200 || data.errorCode) {			console.log('danger will robinson!');			$('#warning-message').html(data.message).addClass('alert');		} else {					$('#warning-message').html(data.message).addClass('alert alert-success');			$('#registerBtn').hide();				}
+	  })	  	  
   
   }
 	

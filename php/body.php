@@ -32,7 +32,7 @@
 			<label>Your Assassin Name </label><input type="text" id="keyword" ng-model='username' name="name" placeholder='RenlysGhost'/> 
 			<label>Your Email</label> <input type="text" id="keyword" name="email" ng-model='email'  placeholder='you@atomiclollipop.com'/><br>
 		</form>
-			<button class='btn btn-primary btn-large' ng-click="register()" value="Register Now!" /> Register Now! </button>
+			<button class='btn btn-primary btn-large' ng-click="register()" id='registerBtn' value="Register Now!" /> Register Now! </button>
 			<div id='warning-message'></div>
 		</div>
 		</div>
