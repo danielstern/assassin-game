@@ -60,7 +60,7 @@ angular
 			  }).
 			  success(function(data, status, headers, config) {		
 				
-				//console.log(data, data.errorCode);
+			//	console.log(data, data.errorCode);
 				$scope.users = data;
 				return;
 				
@@ -72,7 +72,7 @@ angular
 
 	
 	})
-	.controller('AddUser', function AdminMain($scope, $http) {
+	.controller('AddUser', function AddUser($scope, $http) {
 	
 		$scope.addUser = function() {
 		
@@ -89,7 +89,7 @@ angular
 			  }).
 			  success(function(data, status, headers, config) {		
 				
-				console.log(data, data.errorCode);
+			//	console.log(data, data.errorCode);
 				$scope.users = data;
 				$scope.name = '';
 				$scope.email = '';
@@ -97,6 +97,57 @@ angular
 			  })
 
 		};	  	  
-	  });
+	  })
+	  .controller('CreateGame', function CreateGame($scope, $http) {
+	  
+		$scope.createGame = function() {
+		
+			console.log('creating game...');	
+			console.log($scope.name)
+		
+			$http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {
+					function:'createGame',
+					name:$scope.name
+				}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+				console.log(data, data.errorCode);
+				
+			  })
+
+		};	  	  
+	  
+	  
+	  })
+	  .controller('AllGames', function AllGames($scope, $http) {
+	  
+		getGames();
+		var getGamesInterval = setInterval(getGames, 2000);	
+		
+		$scope.$on("$destroy", function(){
+        clearInterval(getGamesInterval);
+		});
+		
+		function getGames() {
+			console.log('get games...')
+			 $http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {function:'getAllGames'}
+			  }).
+			  success(function(data, status, headers, config) {		
+				console.log(data);
+				$scope.games = data;
+				return;
+				
+			  })	  	  
+		  }
+		
+	
+	});
 
 	

@@ -6,10 +6,17 @@
 	  <h2>Add Users</h2>
 	  <input type='text' placeholder='Assasin Name' ng-model='name'>
 	  <input type='text' placeholder='Email' ng-model='email'>
-	  <input type="file" id="files" name="files[]" multiple />
+	<!--  <input type="file" id="files" name="files[]" multiple />-->
 		<output id="list"></output>
 	  <button class='btn' type='submit'>Add</button>
 	</form>
+	</div>
+	<div ng-controller='CreateGame'>
+		<form ng-submit="createGame()">
+		<h2>Create New Game</h2>
+		<input type='text' placeholder='New Game Name' ng-model='name'>
+		<button class='btn btn-large'>Create NEW Game</button></a>
+		</form>
 	</div>
 	</div>
 	
@@ -34,10 +41,40 @@
 
 	  </tr>
 		<tr ng-repeat="user in users | filter:userSearch">
-		  <td>[{{$index + 1}}]</td>
+		  <td>{{user.id}}</td>
 		  <td>{{user.name}} </td> 
 		  <td>{{user.email}}</td>
 		  <td>{{user.date}}</td>
+		</tr>
+	</table>
+	</div>
+	</div>
+	
+	<div class='span9'>
+	<div ng-controller='AllGames'>
+	<input type='text' class='search-query pull-right' placeholder='Search' ng-model='gameSearch'>
+	<h2>All Games</h2>
+	<table class='table .table-striped'>
+	  <tr>
+		<td>
+		  ID
+		</td>
+		<td>
+		  Name
+		</td>
+		<td>
+		  Active
+		</td>
+			<td>
+		  Created
+		</td>
+
+	  </tr>
+		<tr ng-repeat="game in games | filter:gameSearch">
+		  <td>[{{$index + 1}}]</td>
+		  <td>{{game.name}} </td> 
+		  <td>{{game.active}}</td>
+		  <td>{{game.date}}</td>
 		</tr>
 	</table>
 	</div>
