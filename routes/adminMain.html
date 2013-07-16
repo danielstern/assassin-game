@@ -1,0 +1,21 @@
+<h1>All Users</h1>
+
+
+<table class='table .table-striped'>
+  <tr>
+    <td>
+	  ID
+	</td>
+	<td>
+	  Username
+	</td>
+	<td>
+	  Email
+	</td>
+  </tr>
+	<tr ng-repeat="user in users">
+	  <td>[{{$index + 1}}]</td>
+	  <td>{{user.name}} </td> 
+	  <td>{{user.email}}</td>
+	</tr>
+</table>

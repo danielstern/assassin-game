@@ -10,10 +10,10 @@ angular
 		  templateUrl: 'routes/dashboard.html',
 		  controller: 'Dashboard'
 		})  
-		.when('/admin') {
+		.when('/admin', {
 		  templateUrl: 'routes/adminMain.html',
 		  controller: 'AdminMain'			
-		}
+		})
       })
 	.controller('Dashboard', function Dashboard($scope, $http, $routeParams) {
 	
@@ -46,6 +46,21 @@ angular
 	.controller('AdminMain', function AdminMain($scope, $http) {
 		
 		console.log('controllertime...');
+		
+		$scope.users = [{name:'bob',email:6},{name:'shirley',email:4}];
+		
+		 $http({
+			method: 'GET', 
+			url: 'database.php',
+			params: {function:'getAllUsers'}
+		  }).
+		  success(function(data, status, headers, config) {		
+			
+			console.log(data, data.errorCode);
+			$scope.users = data;
+			return;
+			
+		  })	  	  
 	
 	});
   

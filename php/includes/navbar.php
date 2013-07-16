@@ -18,11 +18,11 @@
 					<li>
 						<a href='#/rules' data-toggle='collapse' data-target='.nav-collapse'>Rules</a>	
 					</li>
-						<!--
+						
 					<li>
-						<a data-toggle='collapse' data-target='.nav-collapse' ng-click="calculatorKind = 'timeFrameMode'">Timeframe Calculator</a>	  
+						<a data-toggle='collapse' href='#/admin' data-target='.nav-collapse'>Control Panel</a>	  
 					</li>	
-					-->
+					
 				</ul>
 				
 			</div>
