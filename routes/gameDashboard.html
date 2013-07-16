@@ -1,1 +1,30 @@
 <h1>{{gameName}}</h1>
+
+<div ng-controller='AllUsers'>
+<div class='row'>
+<div class='span5 offset7'>
+	<input type='text' class='search-query pull-right' placeholder='Search' ng-model='userSearch'>
+	<h2>All Users</h2>
+	<table class='table .table-striped'>
+	  <tr>
+		<td>
+		  ID
+		</td>
+		<td>
+		  Username
+		</td>
+		<td>
+		  
+		</td>
+
+	  </tr>
+	
+		<tr ng-controller='GameUserView' ng-repeat="user in users | filter:userSearch">
+		    <td>{{user.name}} </td> 
+		    <td>{{user.email}}</td>
+		    <td><button class='btn' type='submit' ng-click="addUserToGame(user.id, game_id)">Add</button></td>
+		</tr>
+	
+	</table>
+	</div>
+	</div>

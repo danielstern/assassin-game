@@ -137,14 +137,14 @@ angular
 		});
 		
 		function getGames() {
-			//console.log('get games...')
+		
 			 $http({
 				method: 'GET', 
 				url: 'database.php',
 				params: {function:'getAllGames'}
 			  }).
 			  success(function(data, status, headers, config) {		
-			//	console.log(data);
+				console.log(data);
 				$scope.games = data;
 				return;
 				
@@ -156,9 +156,54 @@ angular
 	.controller('GameDashboard' , function GameDashboard($scope, $http, $routeParams) {
 	
 		console.log('game dashboard');
+		console.log($routeParams);
 		$scope.gameName = 'Loading...';
+		
+		$http({
+			method: 'GET', 
+			url: 'database.php',
+			params: {
+				function:'getGameInfo',
+				id:$routeParams.id
+			}
+		  }).
+		  success(function(data, status, headers, config) {		
+			
+			console.log(data, data.errorCode);
+			$scope.gameName = data[0].name;
+			$scope.game_id = data[0].id;
+			
+		  })
+
 	
 	
+	
+	})
+	.controller('GameUserView' , function GameUserView($scope, $http, $routeParams) {
+	
+		console.log('game user view');
+		
+		$scope.addUserToGame = function (user_id, game_id) {
+		
+			console.log('add user to game' , user_id , game_id);
+			
+			$http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {
+					function:'enrolUser',
+					user_id:user_id,
+					game_id:game_id
+				}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+				console.log(data, data.errorCode);
+				
+			  })
+		
+		
+		}
 	
 	})
 

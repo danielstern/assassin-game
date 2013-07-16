@@ -21,6 +21,8 @@
 	if ($function == 'getAllUsers') getAllUsers();
 	if ($function == 'createGame') createGame($_GET['name']);
 	if ($function == 'getAllGames') getAllGames();
+	if ($function == 'getGameInfo') getGameInfo($_GET['id']);
+	if ($function == 'enrolUser') enrolUser($_GET['game_id'], $_GET['user_id']);
 	
 	function addUser($name, $password, $email, $photoLink) {
 	
@@ -80,9 +82,11 @@
 		$rows = array();
 		while($r = mysql_fetch_assoc($resource)) {
 			$rows[] = $r;
+			
 		}
 
 		$json = json_encode($rows);
+	//	echo($json);
 		
 		return $json;
 	
@@ -102,6 +106,42 @@
 	
 		
 	
+	}
+	
+	function enrolUser($game_id, $user_id) {
+	
+		$query = "INSERT INTO  `daniel61_assassin`.`assassin_game_enrolment` (
+			`game_id` ,
+			`user_id` 
+			)
+			VALUES (
+			'$game_id',  
+			'$user_id'
+			);";
+			
+		mysql_query($query);
+		
+		echo($query);
+		echo(mysql_error());
+
+	
+	}
+	
+	function getGameInfo($id) {
+		
+		$return = array();
+		$query = "SELECT * FROM `assassin_games` where `id` = '$id'";
+		$resource = mysql_query($query);
+		
+		
+		$gameData = sqltoJSON($resource);
+		$return['name'] = $gameData['name'];
+		$return['?'] = $gameData['isNone'];
+		
+	//	echo($gameData['name']);
+	
+		echo $gameData;
+
 	}
 	
 	
