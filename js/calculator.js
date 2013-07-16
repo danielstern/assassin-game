@@ -14,6 +14,10 @@ angular
 		  templateUrl: 'routes/adminMain.html',
 		  controller: 'AdminMain'			
 		})
+		.when('/admin/game/:id', {
+		  templateUrl: 'routes/gameDashboard.html',
+		  controller: 'GameDashboard'			
+		})
       })
 	.controller('Dashboard', function Dashboard($scope, $http, $routeParams) {
 	
@@ -133,14 +137,14 @@ angular
 		});
 		
 		function getGames() {
-			console.log('get games...')
+			//console.log('get games...')
 			 $http({
 				method: 'GET', 
 				url: 'database.php',
 				params: {function:'getAllGames'}
 			  }).
 			  success(function(data, status, headers, config) {		
-				console.log(data);
+			//	console.log(data);
 				$scope.games = data;
 				return;
 				
@@ -148,6 +152,14 @@ angular
 		  }
 		
 	
-	});
+	})
+	.controller('GameDashboard' , function GameDashboard($scope, $http, $routeParams) {
+	
+		console.log('game dashboard');
+		$scope.gameName = 'Loading...';
+	
+	
+	
+	})
 
 	

@@ -71,10 +71,15 @@
 
 	  </tr>
 		<tr ng-repeat="game in games | filter:gameSearch">
-		  <td>[{{$index + 1}}]</td>
-		  <td>{{game.name}} </td> 
+		  <td>{{game.id}}</td>
+	      
+		  <td>
+		  <a href='#/admin/game/{{game.id}}'>
+			{{game.name}} 
+	      </a>
+		  </td> 
 		  <td>{{game.active}}</td>
-		  <td>{{game.date}}</td>
+		  <td>{{game.created}}</td>
 		</tr>
 	</table>
 	</div>
