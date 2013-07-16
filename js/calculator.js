@@ -43,24 +43,56 @@ angular
 	  
 		}	
 	})
-	.controller('AdminMain', function AdminMain($scope, $http) {
+	.controller('AllUsers', function AllUsers($scope, $http) {
 		
-		console.log('controllertime...');
+		getUsers();
+		setInterval(getUsers, 2000);	
 		
-		$scope.users = [{name:'bob',email:6},{name:'shirley',email:4}];
-		
-		 $http({
-			method: 'GET', 
-			url: 'database.php',
-			params: {function:'getAllUsers'}
-		  }).
-		  success(function(data, status, headers, config) {		
-			
-			console.log(data, data.errorCode);
-			$scope.users = data;
-			return;
-			
-		  })	  	  
+		function getUsers() {
+			 $http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {function:'getAllUsers'}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+				console.log(data, data.errorCode);
+				$scope.users = data;
+				return;
+				
+			  })	  	  
+		  }
 	
-	});
-  
+	})
+	.controller('AdminMain', function AdminMain($scope) {
+
+	
+	})
+	.controller('AddUser', function AdminMain($scope, $http) {
+	
+		$scope.addUser = function() {
+		
+			console.log('adding user...');	
+		
+			$http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {
+					function:'addUser',
+					name:$scope.name,
+					email:$scope.email
+				}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+				console.log(data, data.errorCode);
+				$scope.users = data;
+				$scope.name = '';
+				$scope.email = '';
+				
+			  })
+
+		};	  	  
+	  });
+
+	

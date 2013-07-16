@@ -1,21 +1,43 @@
-<h1>All Users</h1>
+<h1>Control Panel</h1>
+<div class='row'>
+	<div class='span3'>
+	<div ng-controller='AddUser'>
+	<form ng-submit="addUser()">
+	  <h2>Add Users</h2>
+	  <input type='text' placeholder='Assasin Name' ng-model='name'>
+	  <input type='text' placeholder='Email' ng-model='email'>
+	  <button class='btn' type='submit'>Add</button>
+	</form>
+	</div>
+	</div>
+	
+	<div class='span9'>
+	<div ng-controller='AllUsers'>
+	<input type='text' class='search-query pull-right' placeholder='Search' ng-model='userSearch'>
+	<h2>All Users</h2>
+	<table class='table .table-striped'>
+	  <tr>
+		<td>
+		  ID
+		</td>
+		<td>
+		  Username
+		</td>
+		<td>
+		  Email
+		</td>
+			<td>
+		  Created
+		</td>
 
-
-<table class='table .table-striped'>
-  <tr>
-    <td>
-	  ID
-	</td>
-	<td>
-	  Username
-	</td>
-	<td>
-	  Email
-	</td>
-  </tr>
-	<tr ng-repeat="user in users">
-	  <td>[{{$index + 1}}]</td>
-	  <td>{{user.name}} </td> 
-	  <td>{{user.email}}</td>
-	</tr>
-</table>
+	  </tr>
+		<tr ng-repeat="user in users | filter:userSearch">
+		  <td>[{{$index + 1}}]</td>
+		  <td>{{user.name}} </td> 
+		  <td>{{user.email}}</td>
+		  <td>{{user.date}}</td>
+		</tr>
+	</table>
+	</div>
+	</div>
+</div>
