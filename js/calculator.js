@@ -46,7 +46,11 @@ angular
 	.controller('AllUsers', function AllUsers($scope, $http) {
 		
 		getUsers();
-		setInterval(getUsers, 2000);	
+		var getUsersInterval = setInterval(getUsers, 2000);	
+		
+		$scope.$on("$destroy", function(){
+        clearInterval(getUsersInterval);
+		});
 		
 		function getUsers() {
 			 $http({
@@ -56,7 +60,7 @@ angular
 			  }).
 			  success(function(data, status, headers, config) {		
 				
-				console.log(data, data.errorCode);
+				//console.log(data, data.errorCode);
 				$scope.users = data;
 				return;
 				
