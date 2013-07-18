@@ -1,0 +1,31 @@
+<div class='navbar '> 
+	<div class='navbar-inner   animate {{calculatorKind}}-color'>
+		<div class="container">
+			<a href="#admin/game/{{gameID}}" class='brand'>
+				{{gameName}}
+			</a>
+		
+			<div class='<!--nav-collapse-->'>
+				<ul class='nav pull-right'>
+					<li>
+						<a data-toggle='collapse' href="#admin/game/{{gameID}}"  data-target='.nav-collapse'>Dashboard</a>
+					</li>
+					<li>
+						<a data-toggle='collapse'  href="#admin/game/{{gameID}}/gameSettings" data-target='.nav-collapse'>Game Settings</a>
+					</li>
+					<li>
+						<a data-toggle='collapse'  a href='#admin/game/{{gameID}}/addUsers'  data-target='.nav-collapse'>Add Users</a>
+					</li>
+					<li>
+						<a data-toggle='collapse' a href='#admin/game/{{gameID}}/editUsers' data-target='.nav-collapse'>Manage Users</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
+<div class='hidden-phone pull-right'>
+</div>

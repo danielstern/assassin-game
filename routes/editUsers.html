@@ -1,0 +1,51 @@
+<ng-include src="'routes/gameNavbar.html'"></ng-include>
+
+<div class='row'>
+
+<div class='span12'>
+<div ng-controller='AllGameUsers'>
+	<input type='text' class='search-query pull-right' placeholder='Search' ng-model='userSearch'>
+<h2>In This Game</h2>
+	<table class='table .table-striped'>
+	  <tr>
+		<td>
+		  User
+		</td>
+		<td>
+		  Email
+		</td>
+		<td>
+		  Kills
+		</td>
+		<td>
+		  Deaths
+		</td>
+		<td>
+		  Pursuing
+		</td>
+		<td>
+		
+		</td>
+		<td>
+		
+		</td>
+		<td>
+	
+		</td>
+	  </tr>
+	  <tr ng-repeat="user in gameUsers | filter:userSearch">
+		<td>{{user.user_name}} </td> 
+		<td>{{user.email}}</td>
+		<td>?</td>
+		<td>?</td>
+		<td>?</td>
+		<td> 
+			 <button class='btn btn-info'>COMPLETE CONTRACT</button>
+			<!-- <button class='btn btn-info'>SEND MESSAGE</button>-->
+		</td>
+		<td>  <button class='btn btn-warning'>SUSPEND</button></td>
+		<td>	   <button class='btn btn-danger'>REMOVE</button></td>
+	  </tr>
+	</table>
+</div>
+</div>

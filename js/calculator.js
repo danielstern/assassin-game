@@ -18,6 +18,18 @@ angular
 		  templateUrl: 'routes/gameDashboard.html',
 		  controller: 'GameDashboard'			
 		})
+		.when('/admin/game/:id/addUsers', {
+		  templateUrl: 'routes/addUsers.html',
+		  controller: 'GameDashboard'			
+		})
+		.when('/admin/game/:id/editUsers', {
+		  templateUrl: 'routes/EditUsers.html',
+		  controller: 'GameDashboard'			
+		})
+		.when('/admin/game/:id/gameSettings', {
+		  templateUrl: 'routes/gameSettings.html',
+		  controller: 'GameDashboard'			
+		})
       })
 	.controller('Dashboard', function Dashboard($scope, $http, $routeParams) {
 	
@@ -92,7 +104,7 @@ angular
 			  success(function(data, status, headers, config) {		
 				
 				$scope.gameUsers = data;
-				console.log(data);
+				//console.log(data);
 				return;
 				
 			  })	  	  
@@ -184,9 +196,10 @@ angular
 	})
 	.controller('GameDashboard' , function GameDashboard($scope, $http, $routeParams) {
 	
-		console.log('game dashboard');
+	
 		console.log($routeParams);
 		$scope.gameName = 'Loading...';
+		$scope.gameID = $routeParams.id;
 		
 		$http({
 			method: 'GET', 
@@ -201,6 +214,8 @@ angular
 			console.log(data, data.errorCode);
 			$scope.gameName = data[0].name;
 			$scope.game_id = data[0].id;
+			$scope.game = data[0];
+			console.log('got game...' , $scope.game)
 			
 		  })
 
@@ -235,5 +250,29 @@ angular
 		}
 	
 	})
+	
+	.controller('GameDashboardUserView', function GameDashboardUserView($scope, $http, $routeParams) {
+	
+		return;
+		console.log('gamedashboarduserview...' , $scope.user.user_id , $scope.game_id);
+		$http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {
+					function:'getTarget',
+					game_id:$scope.game_id,
+					pursuer_id:$scope.user.user_id
+				}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+				console.log('get target?' , data, data.errorCode);
+				if (data[0]) $scope.currentlyPursuing = data[0]['name'];
+				
+			  })
+	
+	
+	
+	});
 
 	
