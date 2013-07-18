@@ -70,6 +70,35 @@ angular
 				
 			  })	  	  
 		  }
+		  
+		
+	
+	})
+	.controller('AllGameUsers', function AllGameUsers($scope, $http, $routeParams) {
+		
+		getGameUsers();
+		var getGameUsersInterval = setInterval(getGameUsers, 2000);	
+		
+		$scope.$on("$destroy", function(){
+        clearInterval(getGameUsersInterval);
+		});
+		
+		function getGameUsers() {
+			 $http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {function:'getAllGameUsers',game_id:$routeParams.id}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+				$scope.gameUsers = data;
+				console.log(data);
+				return;
+				
+			  })	  	  
+		  }
+		  
+		
 	
 	})
 	.controller('AdminMain', function AdminMain($scope) {

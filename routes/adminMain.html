@@ -68,6 +68,9 @@
 			<td>
 		  Created
 		</td>
+		<!--<td>
+		  Delete
+		</td>-->
 
 	  </tr>
 		<tr ng-repeat="game in games | filter:gameSearch">
@@ -80,6 +83,7 @@
 		  </td> 
 		  <td>{{game.active}}</td>
 		  <td>{{game.created}}</td>
+		  <!--<td><button class='btn btn-warning'>Delete Game</button></td> For a differetn view -->
 		</tr>
 	</table>
 	</div>

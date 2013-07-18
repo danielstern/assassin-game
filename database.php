@@ -19,6 +19,7 @@
 	}
 	
 	if ($function == 'getAllUsers') getAllUsers();
+	if ($function == 'getAllGameUsers') getAllGameUsers($_GET['game_id']);
 	if ($function == 'createGame') createGame($_GET['name']);
 	if ($function == 'getAllGames') getAllGames();
 	if ($function == 'getGameInfo') getGameInfo($_GET['id']);
@@ -50,6 +51,28 @@
 	function getAllUsers() { 
 	
 		$query = "SELECT * FROM  `daniel61_assassin`.`assassin_users` ";
+		$resource = mysql_query($query);
+		
+		$rows = array();
+		while($r = mysql_fetch_assoc($resource)) {
+			$rows[] = $r;
+		}
+
+		$json = json_encode($rows);
+		//$return['users'] = $json;
+		//echo($return);
+		
+		echo $json;
+	
+	
+	}
+	
+	function getAllGameUsers($game_id) { 
+	
+		//echo($game_id);
+	
+		$query = "SELECT * FROM  `daniel61_assassin`.`game_view` WHERE `game_id` = '$game_id'";
+		//echo($query);
 		$resource = mysql_query($query);
 		
 		$rows = array();
