@@ -6,6 +6,10 @@
 	  <h2>Add Users</h2>
 	  <input type='text' placeholder='Assasin Name' ng-model='name'>
 	  <input type='text' placeholder='Email' ng-model='email'>
+	  <label>Automatically Add to Game</label>
+	  <select >
+		  <option ng-repeat='game in games'><a>{{game.name}}</a></option>
+	  </select>
 	<!--  <input type="file" id="files" name="files[]" multiple />-->
 		<output id="list"></output>
 	  <button class='btn' type='submit'>Add</button>

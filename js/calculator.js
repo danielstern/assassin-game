@@ -45,8 +45,7 @@ angular
 		  }).
 		  success(function(data, status, headers, config) {		
 			console.log(data, data.errorCode);
-			console.log(headers(),config);		
-			console.log(data.errorCode);				
+			
 			if (status != 200 || data.errorCode || !data.message) {			
 				console.log('danger will robinson!');			
 				var msg = (data.message) ? data.message : 'No message at this time.';
@@ -87,37 +86,8 @@ angular
 	
 	})
 	.controller('AllGameUsers', function AllGameUsers($scope, $http, $routeParams) {
-		/*
-		getGameUsers();
-		var getGameUsersInterval = setInterval(getGameUsers, 2000);	
-		
-		$scope.$on("$destroy", function(){
-        clearInterval(getGameUsersInterval);
-		});
-		
-		function getGameUsers() {
-			 $http({
-				method: 'GET', 
-				url: 'database.php',
-				params: {function:'getAllGameUsers',game_id:$routeParams.id}
-			  }).
-			  success(function(data, status, headers, config) {		
-				
-				//$scope.gameUsers = data;
-				//console.log(data);
-				return;
-				
-			  })	  	  
-		  }
-		  */
-		  
-		$scope.removeUser = function(user_id) {
-		
-			console.log('remove user...' + user_id);
-		
-		
-		}
-		  
+
+
 		
 	
 	})
@@ -176,7 +146,7 @@ angular
 	  
 	  
 	  })
-	  .controller('AllGames', function AllGames($scope, $http) {
+	  .controller('AllGames', function AllGames($scope, $rootScope, $http) {
 	  
 		getGames();
 		var getGamesInterval = setInterval(getGames, 2000);	
@@ -193,8 +163,8 @@ angular
 				params: {function:'getAllGames'}
 			  }).
 			  success(function(data, status, headers, config) {		
-				//console.log(data);
 				$scope.games = data;
+				$rootScope.games = data;
 				return;
 				
 			  })	  	  
@@ -205,7 +175,6 @@ angular
 	.controller('GameDashboard' , function GameDashboard($scope, $http, $routeParams) {
 	
 	
-		console.log($routeParams);
 		$scope.gameName = 'Loading...';
 		$scope.gameID = $routeParams.id;
 		
@@ -227,7 +196,7 @@ angular
 			  }).
 			  success(function(data, status, headers, config) {		
 				
-				console.log(data, data.errorCode);
+				//console.log(data, data.errorCode);
 				$scope.gameName = data[0].name;
 				$scope.game = data[0];
 				$scope.users = data.users;
@@ -299,27 +268,6 @@ angular
 	
 	.controller('GameDashboardUserView', function GameDashboardUserView($scope, $http, $routeParams) {
 	
-		/*
-		return;
-		console.log('gamedashboarduserview...' , $scope.user.user_id , $scope.game_id);
-		
-		$http({
-				method: 'GET', 
-				url: 'database.php',
-				params: {
-					function:'getTarget',
-					game_id:$scope.game_id,
-					pursuer_id:$scope.user.user_id
-				}
-			  }).
-			  success(function(data, status, headers, config) {		
-				
-				//console.log('get target?' , data, data.errorCode);
-				//if (data[0]) $scope.currentlyPursuing = data[0]['name'];
-				
-			  })
-	
-		*/
 	
 	});
 
