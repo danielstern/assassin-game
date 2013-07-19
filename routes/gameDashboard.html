@@ -24,11 +24,11 @@
 		  Pursued By
 		</td>
 	  </tr>
-	  <tr ng-controller='GameDashboardUserView' ng-repeat="user in gameUsers | filter:userSearch">
+	  <tr ng-controller='GameDashboardUserView' ng-repeat="user in users | filter:userSearch">
 		<td>{{user.user_name}} </td> 
 		<td>?</td>
 		<td>?</td>
-		<td>{{currentlyPursuing}}</td>
+		<td>{{user.pursuit[0].details[0].name}}</td>
 		<td>?</td>
 	  </tr>
 	</table>
@@ -42,3 +42,4 @@
 <button class='btn-block btn-large btn-warning'>PAUSE</button>
 	
 </div>
+

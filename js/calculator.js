@@ -87,7 +87,7 @@ angular
 	
 	})
 	.controller('AllGameUsers', function AllGameUsers($scope, $http, $routeParams) {
-		
+		/*
 		getGameUsers();
 		var getGameUsersInterval = setInterval(getGameUsers, 2000);	
 		
@@ -103,12 +103,20 @@ angular
 			  }).
 			  success(function(data, status, headers, config) {		
 				
-				$scope.gameUsers = data;
+				//$scope.gameUsers = data;
 				//console.log(data);
 				return;
 				
 			  })	  	  
 		  }
+		  */
+		  
+		$scope.removeUser = function(user_id) {
+		
+			console.log('remove user...' + user_id);
+		
+		
+		}
 		  
 		
 	
@@ -185,7 +193,7 @@ angular
 				params: {function:'getAllGames'}
 			  }).
 			  success(function(data, status, headers, config) {		
-				console.log(data);
+				//console.log(data);
 				$scope.games = data;
 				return;
 				
@@ -201,25 +209,63 @@ angular
 		$scope.gameName = 'Loading...';
 		$scope.gameID = $routeParams.id;
 		
-		$http({
+		getGameInfo();
+		var getGamesInterval = setInterval(getGameInfo, 2000);	
+		
+		$scope.$on("$destroy", function(){
+        clearInterval(getGameInfo);
+		});
+		
+		function getGameInfo() {
+			$http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {
+					function:'getGameInfo',
+					id:$routeParams.id
+				}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+				console.log(data, data.errorCode);
+				$scope.gameName = data[0].name;
+				$scope.game = data[0];
+				$scope.users = data.users;
+				
+			  })
+		 }
+
+		$scope.removed_user_name = 'Jimmy the kid';
+		$scope.removed_user_id = 'Jimmy 420 kid';
+		
+		$scope.handleRemovedUserPrompt = function ($user_id, $user_name) {
+
+			$scope.removed_user_id = $user_id;
+			$scope.removed_user_name = $user_name;
+		
+		}
+		
+		$scope.removePlayerFromGame = function ( $game_id , $user_id) {
+		
+			console.log('remove player from game...' , $user_id, $game_id)
+			$http({
 			method: 'GET', 
 			url: 'database.php',
 			params: {
-				function:'getGameInfo',
-				id:$routeParams.id
+				function:'removeUserFromGame',
+				user_id:$user_id,
+				game_id:$game_id
 			}
 		  }).
 		  success(function(data, status, headers, config) {		
 			
 			console.log(data, data.errorCode);
-			$scope.gameName = data[0].name;
-			$scope.game_id = data[0].id;
-			$scope.game = data[0];
-			console.log('got game...' , $scope.game)
 			
 		  })
-
-	
+		
+		
+		
+		}
 	
 	
 	})
@@ -242,7 +288,7 @@ angular
 			  }).
 			  success(function(data, status, headers, config) {		
 				
-				console.log(data, data.errorCode);
+				//console.log(data, data.errorCode);
 				
 			  })
 		
@@ -253,8 +299,10 @@ angular
 	
 	.controller('GameDashboardUserView', function GameDashboardUserView($scope, $http, $routeParams) {
 	
+		/*
 		return;
 		console.log('gamedashboarduserview...' , $scope.user.user_id , $scope.game_id);
+		
 		$http({
 				method: 'GET', 
 				url: 'database.php',
@@ -266,12 +314,12 @@ angular
 			  }).
 			  success(function(data, status, headers, config) {		
 				
-				console.log('get target?' , data, data.errorCode);
-				if (data[0]) $scope.currentlyPursuing = data[0]['name'];
+				//console.log('get target?' , data, data.errorCode);
+				//if (data[0]) $scope.currentlyPursuing = data[0]['name'];
 				
 			  })
 	
-	
+		*/
 	
 	});
 

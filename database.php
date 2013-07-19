@@ -4,6 +4,7 @@
 	
 	$return = array();
 
+	//var_dump($_GET); return;
 	
 	$function = $_GET['function'];
 	
@@ -24,6 +25,7 @@
 	if ($function == 'getGameInfo') getGameInfo($_GET['id']);
 	if ($function == 'enrolUser') enrolUser($_GET['game_id'], $_GET['user_id']);
 	if ($function == 'getTarget') getTarget($_GET['game_id'], $_GET['pursuer_id']);
+	if ($function == 'removeUserFromGame') removeUserFromGame($_GET['game_id'], $_GET['user_id']);
 	
 	
 	

@@ -58,9 +58,9 @@
 
 	}
 	
-	function getUserNameById($user_id) {
+	function getUserInfoById($user_id) {
 	
-		$query = "SELECT `name` FROM `daniel61_assassin`.`assassin_users` WHERE `id` = $user_id";
+		$query = "SELECT * FROM `daniel61_assassin`.`assassin_users` WHERE `id` = $user_id";
 		return(queryToArray($query));
 	}
 	
@@ -96,6 +96,15 @@
 	}
 	
 		
+	function removeUserFromGame($game_id, $user_id) {
+	
+		$query = "DELETE FROM `daniel61_assassin`.`assassin_game_enrolment` WHERE `assassin_game_enrolment`.`user_id` = $user_id AND `game_id` = $game_id;";
+			
+		mysql_query($query);
+		
+	}
+	
+		
 	function createPursuit($game_id, $pursuer_id, $target_id) { 
 	
 	   $query = "INSERT INTO  `daniel61_assassin`.`assassin_pursuing` (
@@ -125,7 +134,8 @@
 			
 			if ($user['pursuit']) 
 			{
-				var_dump($user['pursuit'][0]);
+				$target = &$user['pursuit'][0];
+				$target['details'] = getUserInfoByID($target['target_id']);
 			}
 		}
 		

@@ -33,19 +33,38 @@
 	
 		</td>
 	  </tr>
-	  <tr ng-repeat="user in gameUsers | filter:userSearch">
+	  <tr ng-repeat="user in users | filter:userSearch">
 		<td>{{user.user_name}} </td> 
 		<td>{{user.email}}</td>
 		<td>?</td>
-		<td>?</td>
-		<td>?</td>
+		<td></td>
+		<td>{{user.pursuit[0].details[0].name}}</td>
 		<td> 
 			 <button class='btn btn-info'>COMPLETE CONTRACT</button>
 			<!-- <button class='btn btn-info'>SEND MESSAGE</button>-->
 		</td>
 		<td>  <button class='btn btn-warning'>SUSPEND</button></td>
-		<td>	   <button class='btn btn-danger'>REMOVE</button></td>
+		<td>	  
+		<a href="#myModal" role="button" class="btn btn-danger" ng-click='handleRemovedUserPrompt(user.user_id, user.user_name)' data-toggle="modal">REMOVE</a>
+		</td>
 	  </tr>
 	</table>
 </div>
+</div>
+
+<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">REMOVE USER</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to remove {{removed_user_name}} from {{gameName}}? </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button data-dismiss="modal" ng-click='removePlayerFromGame(game.id, removed_user_id)' class="btn btn-danger">REMOVE PLAYER</button>
+  </div>
 </div>

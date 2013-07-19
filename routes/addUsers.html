@@ -22,7 +22,7 @@
 	  <tr ng-controller='GameUserView' ng-repeat="user in users | filter:userSearch">
 		<td>{{user.name}} </td> 
 		<td>{{user.email}}</td>
-		<td><button class='btn' type='submit' ng-click="addUserToGame(user.id, game_id)">Add</button></td>
+		<td><button class='btn' type='submit' ng-click="addUserToGame(user.id, game.id)">Add</button></td>
 	  </tr>
 	</table>
 	</div>
