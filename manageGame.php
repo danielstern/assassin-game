@@ -1,95 +1,103 @@
+<?php include('php/head.php') ; ?>
+<div class='container'>
+<h1>Managing Game</h1>
 <?php
 	
 	require_once('databaseFunctions.php');
 	$game_id = $_GET['game_id'];
 	
+	
+	
 	$gameDetails = queryToArray('SELECT * FROM  `assassin_games` WHERE `id` = "'.$game_id.'"');
 	$usersInGame = queryToArray('SELECT * FROM  `assassin_game_enrolment` WHERE `game_id` = "'.$game_id.'"');
-
+	
+	?>
+		<h2>Game Details</h2>
+	<?php
+	var_dump($gameDetails);
+	?>
+		<h2>User Details</h2>:
+	<?php
+	var_dump($usersInGame);
 	manageUsers($usersInGame);
 	
 	function manageUsers($_users) {
 	
-		echo 'managing users';
-			$game_id = $_GET['game_id'];
-		foreach ($_users as &$user) 
-		{
-			var_dump($user);
+	?> 
+	
+		<div class='alert'>Target assignment is enabled by default. Max targets is 1.</div>;
 			
-			echo('$game_id?' . $game_id . '\n');
-		
-			$pursuing = queryToArray("SELECT * FROM `assassin_pursuing` WHERE `pursuer_id` = $user[id] AND `game_id` = $game_id");
+	<?php
+	
+		$game_id = $_GET['game_id'];
+		foreach ($_users as &$user) 
+		{	
+		?>
+			<h3>Managing User:</h3>
+		<?php
+			$query = "SELECT * FROM `assassin_pursuing` WHERE `pursuer_id` = ".$user['user_id']." AND `game_id` = $game_id";
+			bsAlert($query);
+			$pursuing = queryToArray($query);
+			var_dump($user);			
+			
 			if (count($pursuing) == 0)
 			{
-				echo('not pursuing anyone.\n');
+				bsAlert('This user is not pursuing anyone.');
 				$target = findLikelyTarget($_users, $user);
-				echo('found likely target...');
-				var_dump($target);	
-				echo('User? Target?');
-				var_dump($user);
-				var_dump($target);
 				createPursuit($game_id, $user['user_id'], $target['user_id']);
 				unset($target);
 				
-			} else
+			} 
+			else
 			{
-				echo('Is pursuing...');
+				bsAlert('This user has a target.');
 				var_dump($pursuing);
 			}
 		}
 		unset($user);	
 	}
 	
-	$allTargets;
 	
 	function findLikelyTarget($_allUsers, $pursuer) {
 	
-			$game_id = $_GET['game_id'];
-		echo('finding likely target...');
+		bsAlert('findLikelyTarget');
+		$game_id = $_GET['game_id'];
 		$_users = queryToArray('SELECT * FROM  `assassin_game_enrolment` WHERE `game_id` = "'.$game_id.'"');
 		$allTargets = array();
 		foreach ($_users as &$user) 
 		{
-			$pursuing = queryToArray("SELECT * FROM `assassin_pursuing` WHERE `pursuer_id` = '".$user['user_id']."' AND `game_id` = $game_id");
+			$query = "SELECT * FROM `assassin_pursuing` WHERE `pursuer_id` = ".$user['user_id']." AND `game_id` = $game_id";
+			$pursuing = queryToArray($query);
 			foreach($pursuing as $target) 
 			{
 				$allTargets[] = $target;
 			}
 		}
 		
-		echo('haystack redux');
-	
+		bsAlert('This is a totol loadout of all targets:');
+		var_dump($allTargets);
+		
 		
 		foreach ($_users as &$user) 
 		{
-			
-			#echo('being pursued?' . !in_array($user['id'], array_map('target_id',$allTargets)));
-			echo('needle? haystack?');
-			var_dump($user);
 			if (!in_array($user['user_id'], array_map('target_id',$allTargets))) {
 			
-
-				echo('good enough.');
 				if ($user['user_id'] != $pursuer['user_id']) {
-				return $user;
+					bsAlert('This user is not pursing anyone. So now he is the target.');
+					return $user;
 				}
 			}
-			
 		}
 		
-	    echo('no taret found');
-
-
-	
+		bsAlert('Could not find a valid target for this user.');
+		# to do, add another scenario that handles multiple users trailing one
 	}
 	
 				
-		function target_id($u)
-		{
-			echo('returning id, returing' . $u['target_id']);
-			return($u['target_id']);
-		}
-	
+	function target_id($u)
+	{
+		return($u['target_id']);
+	}
 
 
 ?>
