@@ -35,16 +35,14 @@
 		?>
 			<h3>Managing User:</h3>
 		<?php
-			$query = "SELECT * FROM `assassin_pursuing` WHERE `pursuer_id` = ".$user['user_id']." AND `game_id` = $game_id";
-			bsAlert($query);
-			$pursuing = queryToArray($query);
+			$pursuing = getTarget($game_id, $user['user_id']);
 			var_dump($user);			
 			
 			if (count($pursuing) == 0)
 			{
 				bsAlert('This user is not pursuing anyone.');
 				$target = findLikelyTarget($_users, $user);
-				createPursuit($game_id, $user['user_id'], $target['user_id']);
+				if ($target) createPursuit($game_id, $user['user_id'], $target['user_id']);
 				unset($target);
 				
 			} 
@@ -66,8 +64,7 @@
 		$allTargets = array();
 		foreach ($_users as &$user) 
 		{
-			$query = "SELECT * FROM `assassin_pursuing` WHERE `pursuer_id` = ".$user['user_id']." AND `game_id` = $game_id";
-			$pursuing = queryToArray($query);
+			$pursuing = getTarget($game_id, $user['user_id']);
 			foreach($pursuing as $target) 
 			{
 				$allTargets[] = $target;
