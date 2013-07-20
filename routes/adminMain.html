@@ -38,9 +38,7 @@
 	<h2>All Users</h2>
 	<table class='table .table-striped'>
 	  <tr>
-		<td>
-		  ID
-		</td>
+
 		<td>
 		  Username
 		</td>
@@ -53,7 +51,6 @@
 
 	  </tr>
 		<tr ng-repeat="user in users | filter:userSearch">
-		  <td>{{user.id}}</td>
 		  <td>{{user.name}} </td> 
 		  <td>{{user.email}}</td>
 		  <td>{{user.date}}</td>
