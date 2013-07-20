@@ -200,7 +200,7 @@ angular
 				$scope.gameName = data[0].name;
 				$rootScope.game = data[0];
 				$scope.users = data.users;
-				console.log($scope.users);
+		//		console.log($scope.users);
 				
 			  })
 		 }
@@ -241,7 +241,7 @@ angular
 	})
 	.controller('GameUserView' , function GameUserView($scope, $http, $routeParams) {
 	
-		console.log('game user view');
+		var $useridsinthisgame = _.map($scope['users'], function(user){ return user['id'] });
 		
 		$scope.addUserToGame = function (user_id, game_id) {
 		
@@ -273,6 +273,8 @@ angular
 		console.log('game id ' , $rootScope['game']['id']);
 		//console.log('game id ' , $rootScope['game']['id']);
 		//console.log('game id ' , $rootScope['game']['id']);
+		
+
 	
 		$scope.completePursuit= function ($id) {
 		
