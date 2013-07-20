@@ -127,7 +127,9 @@
 	
 	   $query = "UPDATE  `daniel61_assassin`.`assassin_pursuing` SET  `complete` =  '1' WHERE  `assassin_pursuing`.`id` = $id";			
 	   mysql_query($query);	
-	   manageGame($game_id);
+	   flush();
+	 //  sleep(15);
+	 //  manageGame($game_id);
 	}
 	
 	
@@ -191,7 +193,6 @@
 		?>
 			<h2>User Details</h2>:
 		<?php
-		//var_dump($usersInGame);
 		manageUsers($usersInGame,$id);
 		
 	}
@@ -223,7 +224,6 @@
 	<?php
 	
 		$game_id = $id;
-		echo("<h1>IDDDDD!!!!!!' $game_id</div>");
 		foreach ($_users as &$user) 
 		{	
 		?>
@@ -272,10 +272,27 @@
 		{
 			if (!in_array($user['user_id'], array_map('target_id',$allTargets))) {
 			
+				$goodTarget = true;
+			
 				if ($user['user_id'] != $pursuer['user_id']) {
-					bsAlert('This user is not pursing anyone. So now he is the target.');
-					return $user;
+					bsAlert('This user is not pursing anyone.');;
+				} else {
+				   $goodTarget = false;
 				}
+				
+				$pursuing = getTarget($game_id, $user['user_id']);
+				echo('This is the pursuers target.');
+				var_dump($pursuing);
+				if($pursuing[0]){
+					if ($pursuing[0]['target_id'] == $pursuer['user_id'])
+					{
+						echo('this potential target is already pursuing user.');
+						$goodTarget = false;
+					}
+				}
+				
+				echo('So now he is the target.');
+				if ($goodTarget) return $user;
 			}
 		}
 		
