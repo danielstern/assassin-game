@@ -12,6 +12,7 @@
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/less/less-1.3.3.min.js"></script>
 	<script src="lib/bootstrap/js/bootstrap.js"></script>
+	<script src="lib/underscore/underscore.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="styles/bootstrapcalculator.css">
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
