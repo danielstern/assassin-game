@@ -123,10 +123,11 @@
 		mysql_query($query);	
 	}
 	
-	function completePursuit($id) { 
+	function completePursuit($id, $game_id) { 
 	
 	   $query = "UPDATE  `daniel61_assassin`.`assassin_pursuing` SET  `complete` =  '1' WHERE  `assassin_pursuing`.`id` = $id";			
 	   mysql_query($query);	
+	   manageGame($game_id);
 	}
 	
 	
@@ -156,7 +157,7 @@
 		echo(json_encode($gameData));
 
 	}
-	
+
 	
 	function queryToArray($query) {
 		$resource = mysql_query($query);
@@ -178,6 +179,22 @@
 		return json_encode($rows);
 	}
 	
+	function manageGame($id) {
+				
+		$gameDetails = queryToArray('SELECT * FROM  `assassin_games` WHERE `id` = "'.$id.'"');
+		$usersInGame = queryToArray('SELECT * FROM  `assassin_game_enrolment` WHERE `game_id` = "'.$id.'"');
+		
+		?>
+			<h2>Game Details</h2>
+		<?php
+		var_dump($gameDetails);
+		?>
+			<h2>User Details</h2>:
+		<?php
+		//var_dump($usersInGame);
+		manageUsers($usersInGame,$id);
+		
+	}
 	
 	
 	function connect() {
@@ -195,6 +212,83 @@
 		<div class='alert'><?php echo($text)?></div>
 	<?php
 	}
+	
+	
+	function manageUsers($_users, $id) {
+	
+	?> 
+	
+		<div class='alert'>Target assignment is enabled by default. Max targets is 1.</div>;
+			
+	<?php
+	
+		$game_id = $id;
+		echo("<h1>IDDDDD!!!!!!' $game_id</div>");
+		foreach ($_users as &$user) 
+		{	
+		?>
+			<h3>Managing User:</h3>
+		<?php
+			$pursuing = getTarget($game_id, $user['user_id']);
+			var_dump($user);			
+			
+			if (count($pursuing) == 0)
+			{
+				bsAlert('This user is not pursuing anyone.');
+				$target = findLikelyTarget($_users, $user, $game_id);
+				if ($target) createPursuit($game_id, $user['user_id'], $target['user_id']);
+				unset($target);
+				
+			} 
+			else
+			{
+				bsAlert('This user has a target.');
+				var_dump($pursuing);
+			}
+		}
+		unset($user);	
+	}
+	
+	
+	function findLikelyTarget($_allUsers, $pursuer, $game_id) {
+	
+		bsAlert('findLikelyTarget');
+		$_users = queryToArray('SELECT * FROM  `assassin_game_enrolment` WHERE `game_id` = "'.$game_id.'"');
+		$allTargets = array();
+		foreach ($_users as &$user) 
+		{
+			$pursuing = getTarget($game_id, $user['user_id']);
+			foreach($pursuing as $target) 
+			{
+				$allTargets[] = $target;
+			}
+		}
+		
+		bsAlert('This is a totol loadout of all targets:');
+		var_dump($allTargets);
+		
+		
+		foreach ($_users as &$user) 
+		{
+			if (!in_array($user['user_id'], array_map('target_id',$allTargets))) {
+			
+				if ($user['user_id'] != $pursuer['user_id']) {
+					bsAlert('This user is not pursing anyone. So now he is the target.');
+					return $user;
+				}
+			}
+		}
+		
+		bsAlert('Could not find a valid target for this user.');
+		# to do, add another scenario that handles multiple users trailing one
+	}
+	
+				
+	function target_id($u)
+	{
+		return($u['target_id']);
+	}
+
 	
 	connect();
 

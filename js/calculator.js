@@ -172,7 +172,7 @@ angular
 		
 	
 	})
-	.controller('GameDashboard' , function GameDashboard($scope, $http, $routeParams) {
+	.controller('GameDashboard' , function GameDashboard($scope, $http, $rootScope, $routeParams) {
 	
 	
 		$scope.gameName = 'Loading...';
@@ -198,7 +198,7 @@ angular
 				
 				//console.log(data, data.errorCode);
 				$scope.gameName = data[0].name;
-				$scope.game = data[0];
+				$rootScope.game = data[0];
 				$scope.users = data.users;
 				console.log($scope.users);
 				
@@ -267,20 +267,24 @@ angular
 	
 	})
 	
-	.controller('GameDashboardUserView', function GameDashboardUserView($scope, $http, $routeParams) {
+	.controller('GameDashboardUserView', function GameDashboardUserView($scope, $http, $rootScope, $routeParams) {
 	
 	//	console.log('gduv');
+		console.log('game id ' , $rootScope['game']['id']);
+		//console.log('game id ' , $rootScope['game']['id']);
+		//console.log('game id ' , $rootScope['game']['id']);
 	
 		$scope.completePursuit= function ($id) {
 		
-			console.log('id?' , $id);
+			console.log('id?' , $id, 'game id', $rootScope['game']['id']);
 			console.log('complete pursuit...');
 			$http({
 				method: 'GET', 
 				url: 'database.php',
 				params: {
 					function:'completePursuit',
-					id:$id
+					id:$id,
+					game_id:$rootScope['game']['id']
 				}
 			  }).
 			  success(function(data, status, headers, config) {		
