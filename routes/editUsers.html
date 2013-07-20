@@ -33,14 +33,14 @@
 	
 		</td>
 	  </tr>
-	  <tr ng-repeat="user in users | filter:userSearch">
+	  <tr ng-repeat="user in users | filter:userSearch" ng-controller='GameDashboardUserView'>
 		<td>{{user.user_name}} </td> 
 		<td>{{user.email}}</td>
 		<td>?</td>
 		<td></td>
 		<td>{{user.pursuit[0].details[0].name}}</td>
 		<td> 
-			 <button class='btn btn-info'>COMPLETE CONTRACT</button>
+			<a  role="button" class="btn btn-info" ng-click='completePursuit(user.pursuit[0].id)'>COMPLETE CONTRACT</button>
 			<!-- <button class='btn btn-info'>SEND MESSAGE</button>-->
 		</td>
 		<td>  <button class='btn btn-warning'>SUSPEND</button></td>
@@ -52,7 +52,7 @@
 </div>
 </div>
 
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+<!--<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>-->
  
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

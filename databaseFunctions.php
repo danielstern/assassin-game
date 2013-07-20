@@ -51,7 +51,8 @@
 		
 	function getTarget($game_id, $pursuer_id, $no_echo = false) { 
 	
-		$query = "SELECT * FROM  `daniel61_assassin`.`assassin_pursuing` WHERE `game_id` = $game_id AND `pursuer_id` = $pursuer_id";	
+	
+		$query = "SELECT * FROM  `daniel61_assassin`.`assassin_pursuing` WHERE `game_id` = $game_id AND `pursuer_id` = $pursuer_id AND `complete` = 0";	
 		
 		if (!$no_echo) echo queryToJSON($query);
 		return(queryToArray($query));
@@ -122,6 +123,13 @@
 		mysql_query($query);	
 	}
 	
+	function completePursuit($id) { 
+	
+	   $query = "UPDATE  `daniel61_assassin`.`assassin_pursuing` SET  `complete` =  '1' WHERE  `assassin_pursuing`.`id` = $id";			
+	   mysql_query($query);	
+	}
+	
+	
 	function getGameInfo($id) {
 		
 		$query = "SELECT * FROM `assassin_games` where `id` = '$id'";	
@@ -130,12 +138,16 @@
 		
 		foreach ($users as &$user) 
 		{
+		//	var_dump($user);
 		    $user['pursuit'] = getTarget($id, $user['user_id'], true);
 			
 			if ($user['pursuit']) 
 			{
 				$target = &$user['pursuit'][0];
 				$target['details'] = getUserInfoByID($target['target_id']);
+			}
+			else {
+				$user['pursuit'] = 0;
 			}
 		}
 		

@@ -113,8 +113,8 @@ angular
 			  success(function(data, status, headers, config) {		
 				
 			//	console.log(data, data.errorCode);
-				$scope.users = data;
-				$scope.name = '';
+			//	$scope.users = data;
+			//	$scope.name = '';
 				$scope.email = '';
 				
 			  })
@@ -200,6 +200,7 @@ angular
 				$scope.gameName = data[0].name;
 				$scope.game = data[0];
 				$scope.users = data.users;
+				console.log($scope.users);
 				
 			  })
 		 }
@@ -267,6 +268,30 @@ angular
 	})
 	
 	.controller('GameDashboardUserView', function GameDashboardUserView($scope, $http, $routeParams) {
+	
+	//	console.log('gduv');
+	
+		$scope.completePursuit= function ($id) {
+		
+			console.log('id?' , $id);
+			console.log('complete pursuit...');
+			$http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {
+					function:'completePursuit',
+					id:$id
+				}
+			  }).
+			  success(function(data, status, headers, config) {		
+				console.log('finished...');
+				console.log(data, data.errorCode);
+			//	$scope.gameName = data[0].name;
+			//	$scope.game = data[0];
+			//	$scope.users = data.users;
+				
+			  })
+		 }
 	
 	
 	});
