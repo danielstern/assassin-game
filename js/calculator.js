@@ -200,7 +200,9 @@ angular
 				$scope.gameName = data[0].name;
 				$rootScope.game = data[0];
 				$scope.users = data.users;
-				console.log($scope.users);
+				$scope.gameUsers = data.users;
+				$rootScope.gameUsers = data.users;
+		//		console.log($scope.users);
 				
 			  })
 		 }
@@ -239,10 +241,15 @@ angular
 	
 	
 	})
-	.controller('GameUserView' , function GameUserView($scope, $http, $routeParams) {
+	.controller('GameUserView' , function GameUserView($scope, $http, $rootScope, $routeParams) {
 	
-		console.log('game user view');
-		
+		//console.log($scope.gameUsers,$rootScope.gameUsers)
+		var $idsInGame = _.map($scope['gameUsers'], function(user){ return user['user_id']});
+		//console.log('ids in game?' , $idsInGame);
+		window.idsingame = $idsInGame;
+		window.users = $scope['users'];
+		$scope['users'] = _.map($scope['users'], function(user){ user['isInGame'] = _.contains($idsInGame, user['id']); return user;});
+		//console.log('new and imporved user?' , $scope['users']);
 		$scope.addUserToGame = function (user_id, game_id) {
 		
 			console.log('add user to game' , user_id , game_id);
@@ -269,10 +276,8 @@ angular
 	
 	.controller('GameDashboardUserView', function GameDashboardUserView($scope, $http, $rootScope, $routeParams) {
 	
-	//	console.log('gduv');
-		console.log('game id ' , $rootScope['game']['id']);
-		//console.log('game id ' , $rootScope['game']['id']);
-		//console.log('game id ' , $rootScope['game']['id']);
+
+
 	
 		$scope.completePursuit= function ($id) {
 		

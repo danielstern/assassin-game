@@ -141,7 +141,6 @@
 		
 		foreach ($users as &$user) 
 		{
-		//	var_dump($user);
 		    $user['pursuit'] = getTarget($id, $user['user_id'], true);
 			
 			if ($user['pursuit']) 

@@ -3,7 +3,7 @@
 
 <div class='row'>
 
-<div class='span12'>
+<div class='span7'>
 <div ng-controller='AllUsers'>
 	<input type='text' class='search-query pull-right' placeholder='Search' ng-model='userSearch'>
 	<h2>All Users</h2>
@@ -22,7 +22,7 @@
 	  <tr ng-controller='GameUserView' ng-repeat="user in users | filter:userSearch">
 		<td>{{user.name}} </td> 
 		<td>{{user.email}}</td>
-		<td><button class='btn' type='submit' ng-click="addUserToGame(user.id, game.id)">Add</button></td>
+		<td><button class='btn' type='submit' ng-class="{'disabled': user.isInGame}" ng-disabled="user.isInGame" ng-click="user.isInGame = true;addUserToGame(user.id, game.id)">Add <!--{{user.isInGame}}--></button></td>
 	  </tr>
 	</table>
 	</div>
