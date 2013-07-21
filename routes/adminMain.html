@@ -11,7 +11,7 @@
 	  
       <video id="v" width='100%' height="300"></video>
       <input id="b" type="button" disabled="true" value="Take Picture"></input>
-      <canvas id="c" style="display:none" width="640" height="480"></canvas>
+      <canvas id="c" style="width:100%" width="640" height="480"></canvas>
 	  
 	  <label>Automatically Add to Game</label>
 	  <select >
@@ -58,8 +58,8 @@
 
 	  </tr>
 		<tr ng-repeat="user in users | filter:userSearch">
-		<td><img src="images/thumb.php?id={{user.picture}}" height='30px'></td>
-		  <td>{{user.name}} </td> 
+		<td><a href='#/dashboard/{{user.id}}'><img src="images/thumb.php?id={{user.picture}}" height='30px'></a></td>
+		  <td><a href='#/dashboard/{{user.id}}'>{{user.name}}</a> </td> 
 		  <td>{{user.email}}</td>
 		  <td>{{user.date}}</td>
 		</tr>
