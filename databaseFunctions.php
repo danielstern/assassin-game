@@ -38,7 +38,7 @@
 		
 		foreach ($users as &$user) {
 		
-			$user['details'] = getUserInfoById($user['user_id']);
+			$user['details'] = getUserInfoById($user['user_id'], true);
 		
 		}
 		

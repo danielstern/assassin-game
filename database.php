@@ -31,5 +31,4 @@
 	if ($function == 'getUserInfoById') getUserInfoById($_GET['user_id']);
 	
 	
-	return;
 ?>
