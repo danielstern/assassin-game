@@ -97,33 +97,6 @@ angular
 	})
 	.controller('AddUser', function AddUser($scope, $http) {
 	
-		$scope.addUser = function() {
-		
-			console.log('adding user...');	
-		
-			$http({
-				method: 'GET', 
-				url: 'database.php',
-				params: {
-					function:'addUser',
-					name:$scope.name,
-					email:$scope.email
-				}
-			  }).
-			  success(function(data, status, headers, config) {		
-				
-			//	console.log(data, data.errorCode);
-			//	$scope.users = data;
-			//	$scope.name = '';
-				$scope.email = '';
-				
-			  })
-
-		};	  	  
-	  })
-	  .controller('CreateGame', function CreateGame($scope, $http, $location) {
-	  
-		
 		  $scope.sessionId = Math.random().toString(12).slice(2);
 	  
 	    navigator.webkitGetUserMedia({video: true, audio: false}, function(localMediaStream) {
@@ -169,6 +142,36 @@ angular
 		  }, function(){console.log('fail')});
 		  
 		console.log('random session id?' + $scope.sessionId)
+	
+		$scope.addUser = function() {
+		
+			console.log('adding user...');	
+		
+			$http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {
+					function:'addUser',
+					name:$scope.name,
+					email:$scope.email,
+					img:$scope.sessionId
+				}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+			//	console.log(data, data.errorCode);
+			//	$scope.users = data;
+			//	$scope.name = '';
+				$scope.email = '';
+				
+			  })
+
+		};	  	  
+	  })
+	  .controller('CreateGame', function CreateGame($scope, $http, $location) {
+	  
+		
+	
 	  	
 	
 		$scope.createGame = function() {

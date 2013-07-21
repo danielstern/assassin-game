@@ -15,7 +15,7 @@
 		if (isset($_GET['password'])) $password = $_GET['password'];
 		if (isset($_GET['photoLink'])) $photoLink = $_GET['photoLink'];
 		
-		addUser($name, $password, $email, $photoLink);
+		addUser($name, $password, $email, $_GET['img']);
 	}
 	
 	if ($function == 'getAllUsers') getAllUsers();
