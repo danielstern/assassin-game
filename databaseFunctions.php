@@ -313,6 +313,7 @@
 	
 		bsAlert('findLikelyTarget');
 		$_users = queryToArray('SELECT * FROM  `assassin_game_enrolment` WHERE `game_id` = "'.$game_id.'"');
+		shuffle($_users);
 		$allTargets = array();
 		foreach ($_users as &$user) 
 		{
