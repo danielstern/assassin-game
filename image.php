@@ -5,7 +5,7 @@ $filteredData=substr($GLOBALS['HTTP_RAW_POST_DATA'], strpos($GLOBALS['HTTP_RAW_P
 $decodedData=base64_decode($filteredData);
 $filename = $_GET['id'];
 
-$fp = fopen( $filename . '.png', 'wb' );
+$fp = fopen( 'images/' . $filename . '.png', 'wb' );
 fwrite( $fp, $decodedData);
 fclose( $fp );
 ?>
