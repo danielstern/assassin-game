@@ -26,7 +26,7 @@
 	  </tr>
 	  <tr ng-controller='GameDashboardUserView' ng-repeat="user in users | filter:userSearch">
 		<td>{{user.user_name}} </td> 
-		<td>?</td>
+		<td>{{user.score[0].kills}}</td>
 		<td>?</td>
 		<td>{{user.pursuit[0].details[0].name}}</td>
 		<td>?</td>

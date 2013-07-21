@@ -204,6 +204,10 @@ angular
 				$rootScope.gameUsers = data.users;
 		//		console.log($scope.users);
 				
+				
+				window.game = data;
+				//window.game.user = data.users;
+				
 			  })
 		 }
 

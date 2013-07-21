@@ -182,7 +182,7 @@
 	
 	
 	function getGameInfo($id) {
-		
+	
 		$query = "SELECT * FROM `assassin_games` where `id` = '$id'";	
 		$gameData = queryToArray($query);
 		$users = getAllGameUsers($id, true);
@@ -199,12 +199,24 @@
 			else {
 				$user['pursuit'] = 0;
 			}
+			
+			$user['score'] = getScore($id, $user['user_id']);
 		}
 		
 
 		$gameData['users'] = $users;
 		echo(json_encode($gameData));
-
+	
+	}
+	
+	function getScore($game_id, $user_id) {
+	
+		$query = "SELECT * FROM `daniel61_assassin`.`assassin_game_scores` WHERE `game_id` = $game_id AND `user_id` = $user_id";
+		error_reporting(0);
+		$score = queryToArray($query);
+	//	echo($query);
+		return $score;
+		//return 1;
 	}
 
 	
