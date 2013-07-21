@@ -232,7 +232,7 @@ angular
 		$scope.gameID = $routeParams.id;
 		
 		getGameInfo();
-		var getGamesInterval = setInterval(getGameInfo, 2000);	
+		//var getGamesInterval = setInterval(getGameInfo, 2000);	
 		
 		$scope.$on("$destroy", function(){
         clearInterval(getGameInfo);

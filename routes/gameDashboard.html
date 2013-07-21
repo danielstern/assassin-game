@@ -9,6 +9,9 @@
 	<table class='table table-striped'>
 	  <tr>
 		<td>
+		 <!-- image -->
+		</td>
+		<td>
 		  User
 		</td>
 		<td>
@@ -25,6 +28,7 @@
 		</td>
 	  </tr>
 	  <tr ng-controller='GameDashboardUserView' ng-repeat="user in users | filter:userSearch">
+	    <td><img src="images/thumb.php?id={{user.details[0].picture}}"></td>
 		<td>{{user.user_name}} </td> 
 		<td>{{user.score[0].kills}}</td>
 		<td>?</td>

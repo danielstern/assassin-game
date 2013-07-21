@@ -32,11 +32,19 @@
 	
 	function getAllGameUsers($game_id, $no_echo = false) { 
 		
+	//	error_reporting(0);
 		$query = "SELECT * FROM  `daniel61_assassin`.`game_view` WHERE `game_id` = '$game_id'";
-		$json = queryToJSON($query);
+		$users = queryToArray($query);
 		
+		foreach ($users as &$user) {
+		
+			$user['details'] = getUserInfoById($user['user_id']);
+		
+		}
+		
+		$json = json_encode($users);
 		if (!$no_echo) echo $json;
-		return queryToArray($query);
+		return $users;
 	
 	
 	}
