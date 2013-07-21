@@ -123,13 +123,54 @@
 		mysql_query($query);	
 	}
 	
-	function completePursuit($id, $game_id) { 
+	function incrementUserScore($game_id, $user_id) { 
+		
+	error_reporting(1);
+	   $query = "SELECT * from `daniel61_assassin`.`assassin_game_scores` where `game_id` = $game_id AND `user_id` = $user_id";
+	   $score = queryToArray($query);
+	   echo($query);
+	   $id;
+		
+		if (count($score) == 0) {
+		
+			echo('creating score...');
+			
+			$query = "INSERT INTO  `daniel61_assassin`.`assassin_game_scores` (
+			`game_id`,
+			`user_id`
+			)
+			VALUES (
+			'".$game_id."',
+			'".$user_id."'
+			);";
+			
+			
+			$id = mysql_query($query);
+			echo($query);			
+			
+			unset($query);	
+			$newScore = 1;
+			
+		
+		}
+		
+		if (!$newScore) $newScore = intval($score[0]['kills']) + 1;
+		if (!$id) $id = $score[0]['id'];
+		
+		$query = "UPDATE  `daniel61_assassin`.`assassin_game_scores` SET  `kills` =  $newScore WHERE  `assassin_game_scores`.`id` = $id";
+
+		echo($query);				
+			
+		mysql_query($query);	
+	}
+	
+	function completePursuit($id, $game_id, $user_id) { 
 	
 	   $query = "UPDATE  `daniel61_assassin`.`assassin_pursuing` SET  `complete` =  '1' WHERE  `assassin_pursuing`.`id` = $id";			
 	   mysql_query($query);	
 	   flush();
-	 //  sleep(15);
-	 //  manageGame($game_id);
+	 echo('user id? ' . $user_id);
+		incrementUserScore($game_id, $user_id);
 	}
 	
 	

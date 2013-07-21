@@ -26,7 +26,8 @@
 	if ($function == 'enrolUser') enrolUser($_GET['game_id'], $_GET['user_id']);
 	if ($function == 'getTarget') getTarget($_GET['game_id'], $_GET['pursuer_id']);
 	if ($function == 'removeUserFromGame') removeUserFromGame($_GET['game_id'], $_GET['user_id']);
-	if ($function == 'completePursuit') completePursuit($_GET['id'],$_GET['game_id']);
+	if ($function == 'completePursuit') completePursuit($_GET['id'],$_GET['game_id'],$_GET['user_id']);
+	if ($function == 'incrementUserScore') incrementUserScore($_GET['game_id'],$_GET['user_id']);
 	
 	
 	

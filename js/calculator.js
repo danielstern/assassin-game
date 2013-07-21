@@ -282,6 +282,8 @@ angular
 		$scope.completePursuit= function ($id) {
 		
 			console.log('id?' , $id, 'game id', $rootScope['game']['id']);
+			if (!$id) return;
+			console.log('user?' , $scope['user']);
 			console.log('complete pursuit...');
 			$http({
 				method: 'GET', 
@@ -289,7 +291,8 @@ angular
 				params: {
 					function:'completePursuit',
 					id:$id,
-					game_id:$rootScope['game']['id']
+					game_id:$rootScope['game']['id'],
+					user_id:$scope['user']['user_id']
 				}
 			  }).
 			  success(function(data, status, headers, config) {		

@@ -40,7 +40,7 @@
 		<td></td>
 		<td>{{user.pursuit[0].details[0].name}}</td>
 		<td> 
-			<a  role="button" class="btn btn-info" ng-click='completePursuit(user.pursuit[0].id)'>COMPLETE CONTRACT</button>
+			<a role="button" class="btn btn-info" ng-class="{'disabled': !user.pursuit[0]}" ng-click='completePursuit(user.pursuit[0].id)'>COMPLETE CONTRACT</button>
 			<!-- <button class='btn btn-info'>SEND MESSAGE</button>-->
 		</td>
 		<td>  <button class='btn btn-warning'>SUSPEND</button></td>
