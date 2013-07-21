@@ -149,12 +149,7 @@
 			
 			mysql_query($query);
 			$id = mysql_insert_id();
-			 
-			echo($query);	
-			var_dump($id);
-			
-			
-			
+			 		
 			unset($query);	
 			$newScore = 1;
 			
@@ -171,13 +166,56 @@
 		mysql_query($query);	
 	}
 	
+	   function incrementUserDeaths($game_id, $user_id) { 
+		
+		error_reporting(1);
+	   $query = "SELECT * from `daniel61_assassin`.`assassin_game_scores` where `game_id` = $game_id AND `user_id` = $user_id";
+	   $score = queryToArray($query);
+	   $id;
+	   $newScore;
+		
+		if (count($score) == 0) {
+			/* to do, put in own function */
+		
+			echo('creating score...');
+			
+			$query = "INSERT INTO  `daniel61_assassin`.`assassin_game_scores` (
+			`game_id`,
+			`user_id`
+			)
+			VALUES (
+			'".$game_id."',
+			'".$user_id."'
+			);";
+			
+			
+			mysql_query($query);
+			$id = mysql_insert_id();
+			 		
+			unset($query);	
+			$newScore = 1;
+			/**/
+			
+		
+		}
+		
+		if (!$newScore) $newScore = intval($score[0]['deaths']) + 1;
+		if (!$id) $id = $score[0]['id'];
+		
+		$query = "UPDATE  `daniel61_assassin`.`assassin_game_scores` SET  `deaths` =  $newScore WHERE  `assassin_game_scores`.`id` = $id";
+		mysql_query($query);	
+	} 
+	
 	function completePursuit($id, $game_id, $user_id) { 
 	
 	   $query = "UPDATE  `daniel61_assassin`.`assassin_pursuing` SET  `complete` =  '1' WHERE  `assassin_pursuing`.`id` = $id";			
 	   mysql_query($query);	
 	   flush();
-	 echo('user id? ' . $user_id);
 		incrementUserScore($game_id, $user_id);
+		
+		$pursuit =  queryToArray("SELECT * FROM  `daniel61_assassin`.`assassin_pursuing` WHERE  `assassin_pursuing`.`id` = $id");	
+		$target_id = $pursuit[0]['target_id'];
+		incrementUserDeaths($game_id, $target_id);
 	}
 	
 	
