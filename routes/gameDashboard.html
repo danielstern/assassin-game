@@ -27,7 +27,7 @@
 		  Pursued By
 		</td>
 	  </tr>
-	  <tr ng-controller='GameDashboardUserView' ng-repeat="user in users | filter:userSearch limitTo:10">
+	  <tr ng-controller='GameDashboardUserView' ng-repeat="user in users | filter:userSearch">
 	    <td><img src="images/thumb.php?id={{user.details[0].picture}}"></td>
 		<td>{{user.user_name}} </td> 
 		<td>{{user.score[0].kills || 0}}</td>

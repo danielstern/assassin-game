@@ -148,6 +148,8 @@ angular
 				ajax.open("POST",'image.php?id=' + $scope.sessionId,false);
 				ajax.setRequestHeader('Content-Type', 'application/upload');
 				ajax.send(img, params);
+				
+			setTimeout(function(){	$scope.sessionId = Math.random().toString(12).slice(2)},5000); // HACK BUT TRUE
 			//alert("done");
 		};
 			
@@ -243,6 +245,8 @@ angular
 		$scope.gameName = 'Loading...';
 		$scope.gameID = $routeParams.id;
 		
+		console.log('game dashboard...');
+		
 		getGameInfo();
 		//var getGamesInterval = setInterval(getGameInfo, 2000);	
 		
@@ -261,7 +265,7 @@ angular
 			  }).
 			  success(function(data, status, headers, config) {		
 				
-				//console.log(data, data.errorCode);
+				console.log(data, data.errorCode);
 				$scope.gameName = data[0].name;
 				$rootScope.game = data[0];
 				$scope.users = data.users;

@@ -1,0 +1,48 @@
+104ec60 HEAD@{0}: checkout: moving from master to 104ec
+104ec60 HEAD@{1}: checkout: moving from 97a75fd77640b3291c4a56818ade6585b2f38be1 to master
+97a75fd HEAD@{2}: checkout: moving from master to 97a75
+104ec60 HEAD@{3}: commit: trial commit, not working
+97a75fd HEAD@{4}: checkout: moving from 97a75fd77640b3291c4a56818ade6585b2f38be1 to master
+97a75fd HEAD@{5}: checkout: moving from master to 97a75
+97a75fd HEAD@{6}: commit: improved image algorythm
+6db5766 HEAD@{7}: commit: added pictures on main dashboard! huge milestone!!
+2bcafb5 HEAD@{8}: commit: added a stupidly awesome thumb function
+edd6db6 HEAD@{9}: commit: image saving works
+8c41eaa HEAD@{10}: commit: refined saving function
+06aa329 HEAD@{11}: commit: created image saving using revolutionary combinatin of GET and POST!!
+f94d94a HEAD@{12}: commit: added death increment
+aed4ff7 HEAD@{13}: commit: randomized users! one line of code... thanks php!
+080821a HEAD@{14}: commit: added live kills!
+392d1a6 HEAD@{15}: commit: fixed kill bug
+553a084 HEAD@{16}: commit: disabled contract button if is no contract
+849cca9 HEAD@{17}: pull origin master: Fast-forward
+e3ab74c HEAD@{18}: checkout: moving from prevent-char-dupe-2 to master
+2cc81c3 HEAD@{19}: commit: fixed character duping
+2f34b69 HEAD@{20}: commit: still not working, but added underscore.js
+e3ab74c HEAD@{21}: checkout: moving from master to prevent-char-dupe-2
+e3ab74c HEAD@{22}: merge fix-duplicate-char-bug: Fast-forward
+1824bdc HEAD@{23}: checkout: moving from fix-duplicate-char-bug to master
+e3ab74c HEAD@{24}: commit: quick
+1824bdc HEAD@{25}: checkout: moving from master to fix-duplicate-char-bug
+1824bdc HEAD@{26}: commit: prevented matchup conflicts.
+3871223 HEAD@{27}: commit: developed scaffolding for automatic game maanger
+9769b3b HEAD@{28}: commit: finished complete kill!!!
+3ee2c65 HEAD@{29}: commit: updated some stuff and added completePursuit
+6335391 HEAD@{30}: commit: post cleanup
+40d0bcc HEAD@{31}: commit: added remove player, before js cleanup
+4813354 HEAD@{32}: commit: finished code cleanup, things work much better now
+786f572 HEAD@{33}: commit: before refactor
+1b550dc HEAD@{34}: commit: adding user view
+ad1764e HEAD@{35}: commit: added "add user
+75e3fe0 HEAD@{36}: commit: adding routing for games...
+8779968 HEAD@{37}: commit: removed some unnecessary files, added create game and view allgames
+7648fd7 HEAD@{38}: commit: removed extraneous files
+a38ac89 HEAD@{39}: commit: control panel is now stupid
+9ab0208 HEAD@{40}: commit: added live user feed
+f7574be HEAD@{41}: pull origin master: Merge made by the 'recursive' strategy.
+983549a HEAD@{42}: commit: added new files
+7e3314f HEAD@{43}: commit: before php refactor
+183444a HEAD@{44}: commit: before php refactor
+3470beb HEAD@{45}: commit: got angular js routes working!! major layout improvement
+aa24c0d HEAD@{46}: commit: updated from website
+40ef560 HEAD@{47}: commit (initial): initial commit
