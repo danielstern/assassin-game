@@ -130,6 +130,8 @@
 	   $score = queryToArray($query);
 	   echo($query);
 	   $id;
+	   $newScore;
+	   var_dump($score);
 		
 		if (count($score) == 0) {
 		
@@ -145,8 +147,13 @@
 			);";
 			
 			
-			$id = mysql_query($query);
-			echo($query);			
+			mysql_query($query);
+			$id = mysql_insert_id();
+			 
+			echo($query);	
+			var_dump($id);
+			
+			
 			
 			unset($query);	
 			$newScore = 1;
