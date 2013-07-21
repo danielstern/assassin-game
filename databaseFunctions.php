@@ -69,6 +69,7 @@
 	
 	function getUserInfoById($user_id, $no_echo = false) {
 	
+	
 		$query = "SELECT * FROM `daniel61_assassin`.`assassin_users` WHERE `id` = $user_id";
 		if (!$no_echo) echo(queryToJSON($query));
 		return(queryToArray($query));
