@@ -1,4 +1,5 @@
 <h1>Control Panel</h1>
+
 <div class='row'>
 	<div class='span3'>
 	<div ng-controller='AddUser'>
@@ -6,11 +7,16 @@
 	  <h2>Add Users</h2>
 	  <input type='text' placeholder='Assasin Name' ng-model='name'>
 	  <input type='text' placeholder='Email' ng-model='email'>
+	  
+	  
+      <video id="v" width='100%' height="300"></video>
+      <input id="b" type="button" disabled="true" value="Take Picture"></input>
+      <canvas id="c" style="" width="256" height="192"></canvas>
+	  
 	  <label>Automatically Add to Game</label>
 	  <select >
 		  <option ng-repeat='game in games'><a>{{game.name}}</a></option>
 	  </select>
-	<!--  <input type="file" id="files" name="files[]" multiple />-->
 		<output id="list"></output>
 	  <button class='btn' type='submit'>Add</button>
 	</form>
@@ -32,7 +38,7 @@
 	</div>
 	</div>
 	
-	<div class='span9'>
+	<div class='span8 offset1'>
 	<div ng-controller='AllUsers'>
 	<input type='text' class='search-query pull-right' placeholder='Search' ng-model='userSearch'>
 	<h2>All Users</h2>
@@ -59,7 +65,7 @@
 	</div>
 	</div>
 	
-	<div class='span9'>
+	<div class='span8 offset1'>
 	<div ng-controller='AllGames'>
 	<input type='text' class='search-query pull-right' placeholder='Search' ng-model='gameSearch'>
 	<h2>All Games</h2>

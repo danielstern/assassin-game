@@ -78,6 +78,7 @@
 			
 			
 		mysql_query($query);
+		echo(mysql_insert_id());
 
 	}
 	

@@ -121,8 +121,56 @@ angular
 
 		};	  	  
 	  })
-	  .controller('CreateGame', function CreateGame($scope, $http) {
+	  .controller('CreateGame', function CreateGame($scope, $http, $location) {
 	  
+		
+		  $scope.sessionId = Math.random().toString(12).slice(2);
+	  
+	    navigator.webkitGetUserMedia({video: true, audio: false}, function(localMediaStream) {
+			var video = document.querySelector('video');
+		//var video = document.getElementById("v");
+			video.src = window.URL.createObjectURL(localMediaStream);
+			
+			setTimeout(go, 2000);
+			
+			function go() {
+			
+			   video.play();
+			   console.log('loaded media...');
+			
+			
+			}
+
+			// Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+			// See crbug.com/110938.
+			video.onloadedmetadata = function(e) {
+			  // Ready to go. Do some stuff.
+			   video.src = window.URL.createObjectURL(stream);
+			   video.play();
+			   console.log('loaded media...');
+			};
+			
+			var button = document.getElementById("b");
+			var canvas = document.getElementById("c");
+ 
+			button.disabled = false;
+			button.onclick = function() {
+			canvas.getContext("2d").drawImage(video, 0, 0,640,480,0,0,256,192);
+			var img = canvas.toDataURL("image/png");
+			var params='id=' + $scope.sessionId;
+
+			var ajax = new XMLHttpRequest();
+				ajax.open("POST",'image.php?id=' + $scope.sessionId,false);
+				ajax.setRequestHeader('Content-Type', 'application/upload');
+				ajax.send(img, params);
+			//alert("done");
+		};
+			
+		  }, function(){console.log('fail')});
+		  
+		console.log('random session id?' + $scope.sessionId)
+	  	
+	
 		$scope.createGame = function() {
 		
 			console.log('creating game...');	
@@ -139,6 +187,8 @@ angular
 			  success(function(data, status, headers, config) {		
 				
 				console.log(data, data.errorCode);
+				var $game_id = data;
+				  $location.path('/admin/game/' + $game_id);
 				
 			  })
 
