@@ -5,7 +5,7 @@
 
 		<div class='row'>
 		<div class='span4'>
-			<h3 class='tk-ff-cocon-web-pro'>Welcome, {{name}}</h3>
+			<h3 class='tk-ff-cocon-web-pro'>Welcome, {{user.name}}</h3>
 			<h4 class='text-error'>There are 4 people hunting you.</h4>
 			<h4>Your rank: <span class='bold'>32<span> / 203</h4>
 			<h4>KILLS: <span class='bold'>6 DEATHS: 3<span></h4>
@@ -15,24 +15,11 @@
 			
 		</div>
 		<div class='span2'>
-			<img class="img-polaroid" src='images/kerrigan.png'>
+			<img class="img-polaroid" ng-hide = "!user.picture" src='images/{{user.picture}}.png'>
 		</div>
 		</div>
 		
-		<div class='row'>
-		<div class='span6'>
-		<div class='alert alert-info'>
-		<h3>Pre-Register Now for Assassin Game at Atomic Lollipop 2013</h3>
-		<form action="#" id="search_form" method="get"> 
-			<label>Your Assassin Name </label><input type="text" id="keyword" ng-model='username' name="name" placeholder='RenlysGhost'/> 
-			<label>Your Email</label> <input type="text" id="keyword" name="email" ng-model='email'  placeholder='you@atomiclollipop.com'/><br>
-		</form>
-			<button class='btn btn-primary btn-large' ng-click="register()" id='registerBtn' value="Register Now!"> Register Now! </button>
-			<div id='warning-message'></div>
-		</div>
-		</div>
-		</div>
-
+	
 	
 
 	</div>

@@ -67,10 +67,12 @@
 
 	}
 	
-	function getUserInfoById($user_id) {
+	function getUserInfoById($user_id, $no_echo = false) {
 	
 		$query = "SELECT * FROM `daniel61_assassin`.`assassin_users` WHERE `id` = $user_id";
+		if (!$no_echo) echo(queryToJSON($query));
 		return(queryToArray($query));
+		
 	}
 	
 
@@ -241,7 +243,7 @@
 			if ($user['pursuit']) 
 			{
 				$target = &$user['pursuit'][0];
-				$target['details'] = getUserInfoByID($target['target_id']);
+				$target['details'] = getUserInfoByID($target['target_id'], true);
 			}
 			else {
 				$user['pursuit'] = 0;

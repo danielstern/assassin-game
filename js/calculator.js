@@ -31,12 +31,21 @@ angular
 		  controller: 'GameDashboard'			
 		})
       })
-	.controller('Dashboard', function Dashboard($scope, $http, $routeParams) {
+	.controller('Dashboard', function Dashboard($scope, $http, $routeParams, userService) {
 	
-		console.log('giddyup');
+		$scope.name = $routeParams.id;	
+		userService.getUser($routeParams.id, function($user){
+		
+		
+			console.log('resolve');
+			//$scope.name = $user[0].name;
+			$scope.user = $user[0];
+			});;
+		
+	})
+	.controller('Register', function Register($scope, $http, $routeParams) {
 	
-		$scope.name = $routeParams.id;
-	
+		
 		$scope.register = function() {  	  	  var $name = $scope['username'];	  var $email = $scope['email'];
 		  $http({
 			method: 'GET', 
@@ -56,12 +65,15 @@ angular
 			}
 		  })	  	  
 	  
-		}	
+		}
+	
+	
 	})
 	.controller('AllUsers', function AllUsers($scope, $http) {
 		
 		getUsers();
-		var getUsersInterval = setInterval(getUsers, 2000);	
+		//var getUsersInterval = setInterval(getUsers, 2000);	
+		var getUsersInterval = setInterval(getUsers, 10000);	
 		
 		$scope.$on("$destroy", function(){
         clearInterval(getUsersInterval);
@@ -128,7 +140,7 @@ angular
  
 			button.disabled = false;
 			button.onclick = function() {
-			canvas.getContext("2d").drawImage(video, 0, 0,640,480,0,0,256,192);
+			canvas.getContext("2d").drawImage(video, 0, 0,640,480,0,0,640,480);
 			var img = canvas.toDataURL("image/png");
 			var params='id=' + $scope.sessionId;
 
@@ -363,6 +375,38 @@ angular
 		 }
 	
 	
+	}).service('userService', function($http) {
+		
+		this.getUsers = function() {
+			 $http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {function:'getAllUsers'}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+			//	console.log(data, data.errorCode);
+				//$scope.users = data;
+				return data;
+				
+			  })	  	  
+		  }
+		  
+		  this.getUser = function($user_id , resolve) {
+			 $http({
+				method: 'GET', 
+				url: 'database.php',
+				params: {function:'getUserInfoById',user_id:$user_id}
+			  }).
+			  success(function(data, status, headers, config) {		
+				
+				console.log(data, data.errorCode);
+				resolve(data);
+				//$scope.users = data;
+				return data;
+				
+			  })	  	  
+		  }
 	});
 
 	

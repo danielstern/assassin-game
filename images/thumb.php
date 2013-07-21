@@ -3,7 +3,7 @@
 //$GET_['id'];
 ini_set("gd.jpeg_ignore_warning", 1);
 $filename = $_GET['id'] .'.png';
-$percent = 0.5;
+$percent = 0.2;
 
 // Content type
 header('Content-Type: image/jpeg');
