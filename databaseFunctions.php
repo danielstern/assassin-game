@@ -74,9 +74,12 @@
 	//	$query = "SELECT * FROM `daniel61_assassin`.`assassin_users` WHERE `id` = $user_id";
 		$info = queryToArray("SELECT * FROM `daniel61_assassin`.`assassin_users` WHERE `id` = $user_id");
 		$info[0]['enrolment'] = getEnrolmentByUserId($user_id, true);
-		if ($info[0]['enrolment'][0] && !$basic) {
-			$game_id = $info[0]['enrolment'][0]['game_id'];
-			$info[0]['enrolment'][0]['pursuit'] = getTarget($game_id, $info[0]['id'], true);
+		if ($info[0]['enrolment'])
+		{
+			if ($info[0]['enrolment'][0] && !$basic) {
+				$game_id = $info[0]['enrolment'][0]['game_id'];
+				$info[0]['enrolment'][0]['pursuit'] = getTarget($game_id, $info[0]['id'], true);
+			}
 		}
 		if (!$no_echo) echo(json_encode($info));
 		return($info);
