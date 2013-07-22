@@ -42,7 +42,8 @@ angular
 			$scope.user = $user[0];
 			$user = $scope.user;
 			$scope.currentGame = $user['enrolment'][0];
-//			$scope.pursuit = $user['enrolment'][0]['pursuit'][0];
+    		$scope.pursuit = $user['enrolment'][0]['pursuit'][0]['details'][0];
+    		$scope.score = $user['score'][0];
 
 			window.user = $user;
 		});;

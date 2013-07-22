@@ -6,9 +6,9 @@
 		<div class='row'>
 		<div class='span4'>
 			<h3 class='tk-ff-cocon-web-pro'>Welcome, {{user.name}}</h3>
-			<h4 class='text-error'>There are 4 people hunting you.</h4>
-			<h4>Your rank: <span class='bold'>32<span> / 203</h4>
-			<h4>KILLS: <span class='bold'>6 DEATHS: 3<span></h4>
+			<h4 class='text-error'>There are ? people hunting you.</h4>
+			<h4>Your rank: <span class='bold'>?<span> / ???</h4>
+			<h4>KILLS: <span class='bold'>{{score.kills}} DEATHS: {{score.deaths}}<span></h4>
 			Recently...<br>
 			<span class='text-info'>Lighto</span> killed <span class='text-info'>Tiny Tom</span> 12 minutes ago.<br>
 			<span class='text-info'>MightyDeathOtter</span> killed <span class='text-info'>RenlysGhost</span> 18 minutes ago. <i class="icon-hand-up"></i><br>
@@ -27,8 +27,8 @@
 		<h1 class='text-error'>TARGET</h1>
 		<div class='row'>
 			<div class='span3'>
-				<img class="img-polaroid" src='images/pikachu_cosplay.png'>
-				<h3 class='text-error'>{{target.name}}</h3>
+				<img class="img-polaroid" src='images/{{pursuit.picture}}.png'>
+				<h3 class='text-error'>{{pursuit.name}}</h3>
 					
 
 					<button type="submit" class="btn btn-danger btn-large btn-block" ng-click='alert("KILL!")'>ASSASSINATE</button>

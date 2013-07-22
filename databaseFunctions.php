@@ -79,6 +79,8 @@
 			if ($info[0]['enrolment'][0] && !$basic) {
 				$game_id = $info[0]['enrolment'][0]['game_id'];
 				$info[0]['enrolment'][0]['pursuit'] = getTarget($game_id, $info[0]['id'], true);
+				
+				$info[0]['score'] = getScore($game_id, $info[0]['id']);
 			}
 		}
 		if (!$no_echo) echo(json_encode($info));
