@@ -29,6 +29,7 @@
 	if ($function == 'completePursuit') completePursuit($_GET['id'],$_GET['game_id'],$_GET['user_id']);
 	if ($function == 'incrementUserScore') incrementUserScore($_GET['game_id'],$_GET['user_id']);
 	if ($function == 'getUserInfoById') getUserInfoById($_GET['user_id']);
+	if ($function == 'getEnrolmentByUserId') getEnrolmentByUserId($_GET['user_id']);
 	
 	
 ?>

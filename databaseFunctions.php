@@ -60,17 +60,33 @@
 	function getTarget($game_id, $pursuer_id, $no_echo = false) { 
 	
 	
-		$query = "SELECT * FROM  `daniel61_assassin`.`assassin_pursuing` WHERE `game_id` = $game_id AND `pursuer_id` = $pursuer_id AND `complete` = 0";	
+		$target = queryToArray("SELECT * FROM  `daniel61_assassin`.`assassin_pursuing` WHERE `game_id` = $game_id AND `pursuer_id` = $pursuer_id AND `complete` = 0");
+		$target[0]['details'] = getUserInfoByID($target[0]['target_id'], true, true);
 		
-		if (!$no_echo) echo queryToJSON($query);
-		return(queryToArray($query));
+		if (!$no_echo) echo (json_encode($target));
+		return($target);
 
 	}
 	
-	function getUserInfoById($user_id, $no_echo = false) {
+	function getUserInfoById($user_id, $no_echo = false, $basic = false) {
 	
 	
-		$query = "SELECT * FROM `daniel61_assassin`.`assassin_users` WHERE `id` = $user_id";
+	//	$query = "SELECT * FROM `daniel61_assassin`.`assassin_users` WHERE `id` = $user_id";
+		$info = queryToArray("SELECT * FROM `daniel61_assassin`.`assassin_users` WHERE `id` = $user_id");
+		$info[0]['enrolment'] = getEnrolmentByUserId($user_id, true);
+		if ($info[0]['enrolment'][0] && !$basic) {
+			$game_id = $info[0]['enrolment'][0]['game_id'];
+			$info[0]['enrolment'][0]['pursuit'] = getTarget($game_id, $info[0]['id'], true);
+		}
+		if (!$no_echo) echo(json_encode($info));
+		return($info);
+		
+	}
+	
+	function getEnrolmentByUserId($user_id, $no_echo = false) {
+	
+	
+		$query = "SELECT * FROM `daniel61_assassin`.`assassin_game_enrolment` WHERE `user_id` = $user_id";
 		if (!$no_echo) echo(queryToJSON($query));
 		return(queryToArray($query));
 		
@@ -241,14 +257,7 @@
 		{
 		    $user['pursuit'] = getTarget($id, $user['user_id'], true);
 			
-			if ($user['pursuit']) 
-			{
-				$target = &$user['pursuit'][0];
-				$target['details'] = getUserInfoByID($target['target_id'], true);
-			}
-			else {
-				$user['pursuit'] = 0;
-			}
+		
 			
 			$user['score'] = getScore($id, $user['user_id']);
 		}

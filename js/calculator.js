@@ -36,11 +36,17 @@ angular
 		$scope.name = $routeParams.id;	
 		userService.getUser($routeParams.id, function($user){
 		
-		
+			// this a callback, how about a promise?
 			console.log('resolve');
 			//$scope.name = $user[0].name;
 			$scope.user = $user[0];
-			});;
+			$user = $scope.user;
+			$scope.currentGame = $user['enrolment'][0];
+//			$scope.pursuit = $user['enrolment'][0]['pursuit'][0];
+
+			window.user = $user;
+		});;
+			
 		
 	})
 	.controller('Register', function Register($scope, $http, $routeParams) {
@@ -149,7 +155,7 @@ angular
 				ajax.setRequestHeader('Content-Type', 'application/upload');
 				ajax.send(img, params);
 				
-			setTimeout(function(){	$scope.sessionId = Math.random().toString(12).slice(2)},5000); // HACK BUT TRUE
+			//setTimeout(function(){	$scope.sessionId = Math.random().toString(12).slice(2)},5000); // HACK BUT TRUE
 			//alert("done");
 		};
 			
